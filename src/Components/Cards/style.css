@@ -1,0 +1,24 @@
+.book_image {
+    width:100px;
+    box-shadow:10px 10px 18px grey;
+    height: auto;
+}
+.book_container {
+    width: 425px;
+    border-radius: 20px;
+    margin: 20px;
+    box-shadow:10px 10px 18px grey;
+}
+.book_wrapper {
+    display: flex;
+    width: 100%;
+}
+.book_details {
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.buy-button {
+    width: 140px;
+}
