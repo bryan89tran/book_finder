@@ -19,7 +19,7 @@ class Search extends Component {
     return (
       <input 
         className="search-bar"
-        placeholder="Book"
+        placeholder="Search"
         value={this.state.search}
         name="search"
         onChange={this.handleChange}
