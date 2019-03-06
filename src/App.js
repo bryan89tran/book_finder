@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Form from './Components/Form'
 import Cards from './Components/Cards'
 import './App.css';
 
@@ -10,29 +9,47 @@ class App extends Component {
     books: [],
   }
 
-  handleInputChange(key, value) {
+  handleChange = event => {
+    let { value, name } = event.target;
     this.setState({
-      [key]: value
+      [name]: value
     });
+  }
+
+  onKeyPressed = event => {
+    console.log(this.state.search)
+    if(event.keyCode === 13) {
+      this.searchGoogle();
+    }
   }
 
   searchGoogle() {
     let term = encodeURI(this.state.search);
-    fetch('https://www.googleapis.com/books/v1/volumes?q='+ term)
-      .then(resp => {  return resp.json(); })
-      .then(json => {
-        this.setState({
-          books: json.items
+    if(term.length > 2){
+      this.setState({ books: []});
+      fetch('https://www.googleapis.com/books/v1/volumes?q='+ term)
+        .then(resp => {  return resp.json(); })
+        .then(json => {
+          this.setState({
+            books: json.items
+          });
         });
-      });
+    }
   }
 
   render() {
     return (
       <div>
         <div className="search-bar_container">
-          <Form 
-            formChange={(key, value) => this.handleInputChange(key, value)}
+          <input 
+            className="search-bar"
+            placeholder="Search"
+            value={this.state.search}
+            name="search"
+            onChange={this.handleChange}
+            type="text"
+            onKeyUp={this.onKeyPressed}
+            tabIndex="0"
           />
           <img 
             src="./images/search.png" 
