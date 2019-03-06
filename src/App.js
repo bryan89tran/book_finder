@@ -17,7 +17,6 @@ class App extends Component {
   }
 
   onKeyPressed = event => {
-    console.log(this.state.search)
     if(event.keyCode === 13) {
       this.searchGoogle();
     }
@@ -25,7 +24,7 @@ class App extends Component {
 
   searchGoogle() {
     let term = encodeURI(this.state.search);
-    if(term.length > 2){
+    if(term.length > 0){
       this.setState({ books: []});
       fetch('https://www.googleapis.com/books/v1/volumes?q='+ term)
         .then(resp => {  return resp.json(); })
